@@ -3,6 +3,8 @@ import Colors from './Colors';
 
 const Div = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  border: solid 2px black;
   justify-content: center;
   align-items: center;
   background-color: #dbc3e5;

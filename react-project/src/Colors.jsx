@@ -1,24 +1,27 @@
 import { useState, useEffect } from 'react';
+import Canvas from './Canvas';
 import styled from 'styled-components';
 import axios from 'axios';
 const url = 'https://api.harvardartmuseums.org/color?';
 
 const ColorBoxWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  width: 60%;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  max-width: 224px;
+  padding: 32px;
   gap: 2px;
 `;
 
 const ColorBox = styled.button`
-  width: 100px;
-  height: 100px;
-  border-radius: 18px;
+  width: 64px;
+  height: 64px;
+  border-radius: 30px;
 `;
 
 function Colors() {
   const [colors, setColors] = useState(null);
+  const [activeColor, setActiveColor] = useState('');
 
   const getColors = async () => {
     try {
@@ -30,6 +33,7 @@ function Colors() {
         .get(`${url}apikey=${json.apikey}&page=10`)
         .then((response) => {
           setColors(response.data.records);
+          console.log('Fetch is done..');
         });
     } catch (error) {
       console.log(error);
@@ -41,17 +45,20 @@ function Colors() {
   }, []);
 
   return (
-    <ColorBoxWrapper>
-      {colors !== null &&
-        colors.map((color) => (
-          <ColorBox
-            key={color.id}
-            style={{ backgroundColor: color.hex }}
-            value={color.hex}
-            onClick={(e) => console.log(e.target.value)}
-          ></ColorBox>
-        ))}
-    </ColorBoxWrapper>
+    <>
+      <ColorBoxWrapper>
+        {colors !== null &&
+          colors.map((color) => (
+            <ColorBox
+              key={color.id}
+              style={{ backgroundColor: color.hex }}
+              value={color.hex}
+              onClick={(event) => setActiveColor(event.target.value)}
+            ></ColorBox>
+          ))}
+      </ColorBoxWrapper>
+      <Canvas activeColor={{ color: activeColor }} />
+    </>
   );
 }
 
