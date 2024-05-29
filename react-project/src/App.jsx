@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Home from "./Home";
 import Colors from "./Colors";
+import Test from "./Test";
 import {
   createHashRouter,
   Link,
@@ -12,11 +13,9 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /* justify-content: center; */
   padding: 42px;
   align-items: flex-start;
   background-color: #dbc3e5;
-  width: 100%;
   height: 100vh;
 `;
 
@@ -26,6 +25,7 @@ function App() {
       children: [
         { element: <Home />, path: "/" },
         { element: <Colors />, path: "/colors" },
+        { element: <Test />, path: "/test" },
       ],
       element: (
         <>
@@ -37,6 +37,9 @@ function App() {
                 </li>
                 <li>
                   <Link to="/colors">Colors</Link>
+                </li>
+                <li>
+                  <Link to="/test">Test</Link>
                 </li>
               </ul>
             </nav>
