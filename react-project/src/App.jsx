@@ -10,10 +10,11 @@ import {
 
 const Main = styled.main`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  border: solid 2px black;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  padding: 42px;
+  align-items: flex-start;
   background-color: #dbc3e5;
   width: 100%;
   height: 100vh;
@@ -28,17 +29,17 @@ function App() {
       ],
       element: (
         <>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/colors">Colors</Link>
-              </li>
-            </ul>
-          </nav>
           <Main>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/colors">Colors</Link>
+                </li>
+              </ul>
+            </nav>
             <Outlet />
           </Main>
         </>
