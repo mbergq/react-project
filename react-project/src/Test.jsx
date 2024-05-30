@@ -24,25 +24,25 @@ const Div = styled.div`
 function Test() {
   const [data, setData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const fetchData = async () => {
-    try {
-      //fetch api-key from local json file
-      const response = await fetch("../apikey.json");
-      const json = await response.json();
-      //fetch the array of data needed and put it into state
-      return axios
-        .get(`${url}apikey=${json.apikey}&size=100&page=${pageNumber}`)
-        .then((response) => {
-          console.log(response.data.records);
-          setData(response.data.records);
-          console.log("Fetch is done..");
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //fetch api-key from local json file
+        const response = await fetch("../apikey.json");
+        const json = await response.json();
+        //fetch the array of data needed and put it into state
+        return axios
+          .get(`${url}apikey=${json.apikey}&size=100&page=${pageNumber}`)
+          .then((response) => {
+            console.log(response.data.records);
+            setData(response.data.records);
+            console.log("Fetch is done..");
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchData();
   }, [pageNumber]);
 
