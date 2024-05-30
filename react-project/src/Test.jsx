@@ -23,17 +23,15 @@ const Div = styled.div`
 `;
 function Test() {
   const [data, setData] = useState(null);
-  // const [pageNumber, setPageNumber] = useState(1);
-
-  const fetchData = async (n) => {
-    console.log(n);
+  const [pageNumber, setPageNumber] = useState(1);
+  const fetchData = async () => {
     try {
       //fetch api-key from local json file
       const response = await fetch("../apikey.json");
       const json = await response.json();
       //fetch the array of data needed and put it into state
       return axios
-        .get(`${url}apikey=${json.apikey}&size=100&page=${n}`)
+        .get(`${url}apikey=${json.apikey}&size=100&page=${pageNumber}`)
         .then((response) => {
           console.log(response.data.records);
           setData(response.data.records);
@@ -46,7 +44,7 @@ function Test() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [pageNumber]);
 
   return (
     <>
@@ -64,13 +62,8 @@ function Test() {
           }}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values.name);
-            fetchData(values.name);
+            setPageNumber(values.name);
             setSubmitting(false);
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-
-            //   setSubmitting(false);
-            // }, 400);
           }}
         >
           {({ isSubmitting }) => (
