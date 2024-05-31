@@ -19,11 +19,12 @@ const GridWrapper = styled.div`
   max-width: 60%;
 `;
 const Div = styled.div`
-  border: solid 1px black;
+  max-width: 20%;
 `;
 function Test() {
   const [data, setData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,31 +54,50 @@ function Test() {
         <Formik
           initialValues={{ name: "" }}
           validate={(values) => {
+            setInputValue(values.name);
             const errors = {};
             let numbers = /^[0-9]+$/;
             if (!values.name.match(numbers) && values.name !== "") {
               errors.name = "Must be a number";
+            } else if (values.name * 1 > 3878) {
+              errors.name = "There are 3878 pages, please enter a lower number";
             }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values.name);
-            setPageNumber(values.name);
+            //multiply string with 1 to turn it into number data-type
+            setPageNumber(values.name * 1);
+            values.name = "";
             setSubmitting(false);
           }}
         >
           {({ isSubmitting }) => (
             <Form>
               <Field type="name" name="name" />
-
-              <ErrorMessage name="name" component="p" />
-
-              <button type="submit" disabled={isSubmitting}>
+              <button
+                type="submit"
+                disabled={
+                  isSubmitting || inputValue > 3878 || inputValue === ""
+                }
+              >
                 Go
               </button>
+              <ErrorMessage name="name" component="p" />
             </Form>
           )}
         </Formik>
+        <button
+          disabled={pageNumber === 1}
+          onClick={() => setPageNumber(pageNumber - 1)}
+        >
+          Previous
+        </button>
+        <button
+          disabled={pageNumber === 3878}
+          onClick={() => setPageNumber(pageNumber + 1)}
+        >
+          Next
+        </button>
       </Div>
       <GridWrapper>
         <Grid>
