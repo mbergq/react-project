@@ -34,7 +34,7 @@ function Test() {
         const json = await response.json();
         //fetch the array of data needed and put it into state
         return axios
-          .get(`${url}apikey=${json.apikey}&size=100&page=${pageNumber}`)
+          .get(`${url}apikey=${json.apikey}&size=40&page=${pageNumber}`)
           .then((response) => {
             console.log(response.data.records);
             setData(response.data.records);
@@ -49,7 +49,7 @@ function Test() {
 
   return (
     <>
-      <h2>Go to a page</h2>
+      <h2>Jump to a page</h2>
       <Div>
         <Formik
           initialValues={{ name: "" }}
@@ -103,6 +103,7 @@ function Test() {
         <Grid>
           {data !== null &&
             data.map((object) => (
+              //Wrap these in Link?
               <Image key={object.id} src={object.baseimageurl}></Image>
             ))}
         </Grid>

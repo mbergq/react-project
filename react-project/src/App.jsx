@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Home from "./Home";
 import Colors from "./Colors";
-import Test from "./Test";
+import Test from "./Gallery";
 import {
   createHashRouter,
   Link,
