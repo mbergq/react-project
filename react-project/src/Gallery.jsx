@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 const url = "https://api.harvardartmuseums.org/image?";
@@ -18,10 +19,10 @@ const Grid = styled.div`
 const GridWrapper = styled.div`
   max-width: 60%;
 `;
-const Div = styled.div`
+const FormWrapper = styled.div`
   max-width: 20%;
 `;
-function Test() {
+function Gallery() {
   const [data, setData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [inputValue, setInputValue] = useState("");
@@ -50,7 +51,7 @@ function Test() {
   return (
     <>
       <h2>Jump to a page</h2>
-      <Div>
+      <FormWrapper>
         <Formik
           initialValues={{ name: "" }}
           validate={(values) => {
@@ -98,13 +99,16 @@ function Test() {
         >
           Next
         </button>
-      </Div>
+      </FormWrapper>
       <GridWrapper>
         <Grid>
           {data !== null &&
             data.map((object) => (
-              //Wrap these in Link?
-              <Image key={object.id} src={object.baseimageurl}></Image>
+              <div key={object.id}>
+                <Link to={`${object.id}`}>
+                  <Image src={object.baseimageurl}></Image>
+                </Link>
+              </div>
             ))}
         </Grid>
       </GridWrapper>
@@ -112,4 +116,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default Gallery;

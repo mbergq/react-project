@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Home from "./Home";
 import Colors from "./Colors";
-import Test from "./Gallery";
+import Gallery from "./Gallery";
+import GalleryObject from "./GalleryObject";
 import {
   createHashRouter,
   Link,
@@ -25,7 +26,8 @@ function App() {
       children: [
         { element: <Home />, path: "/" },
         { element: <Colors />, path: "/colors" },
-        { element: <Test />, path: "/test" },
+        { element: <Gallery />, path: "/gallery" },
+        { element: <GalleryObject />, path: "/gallery/:id" },
       ],
       element: (
         <>
@@ -39,7 +41,7 @@ function App() {
                   <Link to="/colors">Colors</Link>
                 </li>
                 <li>
-                  <Link to="/test">Test</Link>
+                  <Link to="/gallery">Gallery</Link>
                 </li>
               </ul>
             </nav>
