@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -24,7 +25,7 @@ const FormWrapper = styled.div`
 `;
 function Gallery() {
   const [data, setData] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useOutletContext();
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
@@ -50,7 +51,7 @@ function Gallery() {
 
   return (
     <>
-      <h2>Jump to a page</h2>
+      <h3>Jump to a page</h3>
       <FormWrapper>
         <Formik
           initialValues={{ name: "" }}

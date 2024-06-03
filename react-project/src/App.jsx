@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Home from "./Home";
 import Colors from "./Colors";
@@ -21,6 +22,7 @@ const Main = styled.main`
 `;
 
 function App() {
+  const [page, setPage] = useState(1);
   const router = createHashRouter([
     {
       children: [
@@ -45,7 +47,7 @@ function App() {
                 </li>
               </ul>
             </nav>
-            <Outlet />
+            <Outlet context={[page, setPage]} />
           </Main>
         </>
       ),
