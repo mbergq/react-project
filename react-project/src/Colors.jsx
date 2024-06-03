@@ -29,7 +29,6 @@ function Colors() {
       //fetch api-key from local json file
       const response = await fetch("../apikey.json");
       const json = await response.json();
-      //fetch the array of data needed and put it into state
       return axios
         .get(`${url}apikey=${json.apikey}&page=10`)
         .then((response) => {

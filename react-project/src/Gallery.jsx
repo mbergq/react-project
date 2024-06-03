@@ -26,8 +26,6 @@ const FormWrapper = styled.div`
 `;
 const InfoWrapper = styled.div`
   max-width: 14%;
-  /* display: flex;
-  flex-wrap: wrap; */
 `;
 
 const rotate360 = keyframes`

@@ -8,11 +8,16 @@ const url = "https://api.harvardartmuseums.org/image?";
 const Image = styled.img`
   max-width: 68%;
   height: auto;
-  object-fit: cover;
+`;
+
+const ColorBox = styled.button`
+  width: 42px;
+  height: 42px;
 `;
 
 function GalleryObject() {
-  const [data, setData] = useState(null);
+  const [image, setImage] = useState(null);
+  const [color, setColor] = useState(null);
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
@@ -23,8 +28,10 @@ function GalleryObject() {
         return axios
           .get(`${url}apikey=${json.apikey}&id=${id}`)
           .then((response) => {
-            console.log(response.data.records[0].baseimageurl);
-            setData(response.data.records[0].baseimageurl);
+            console.log(response.data.records[0].colors);
+            console.log(response.data.records[0]);
+            setImage(response.data.records[0].baseimageurl);
+            setColor(response.data.records[0].colors);
             console.log("Fetch is done..");
           });
       } catch (error) {
@@ -35,8 +42,14 @@ function GalleryObject() {
   }, [id]);
   return (
     <>
-      <h2>Id: {id}</h2>
-      <Image src={data}></Image>
+      {color !== null &&
+        color.map((col, index) => (
+          <ColorBox
+            key={index}
+            style={{ backgroundColor: col.color }}
+          ></ColorBox>
+        ))}
+      <Image src={image}></Image>
     </>
   );
 }
