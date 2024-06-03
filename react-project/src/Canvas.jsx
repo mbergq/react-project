@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import proptypes from "prop-types";
 
-const WhiteBoard = styled.canvas`
-  /* width: 400px;
-  height: 280px; */
+const PaintArea = styled.canvas`
+  height: 520px;
+  width: 960px;
   border: 1px solid #000000;
 `;
 
@@ -48,7 +48,9 @@ function Canvas({ props }) {
   };
   return (
     <>
-      <WhiteBoard
+      <PaintArea
+        height="520"
+        width="960"
         onMouseDown={startDrawing}
         onMouseUp={endDrawing}
         onMouseMove={draw}

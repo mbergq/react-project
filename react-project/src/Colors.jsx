@@ -46,7 +46,7 @@ function Colors() {
 
   return (
     <>
-      <h2>Create some art!</h2>
+      <h2>Paint</h2>
       <ColorBoxWrapper>
         {colors !== null &&
           colors.map((color) => (
