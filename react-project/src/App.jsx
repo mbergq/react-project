@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Home from "./Home";
-import Colors from "./Colors";
+import Colors from "./Paint";
 import Gallery from "./Gallery";
 import GalleryObject from "./GalleryObject";
 import {

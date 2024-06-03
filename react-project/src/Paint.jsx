@@ -20,7 +20,7 @@ const ColorBox = styled.button`
   height: 42px;
 `;
 
-function Colors() {
+function Paint() {
   const [colors, setColors] = useState(null);
   const [activeColor, setActiveColor] = useState("");
 
@@ -63,4 +63,4 @@ function Colors() {
   );
 }
 
-export default Colors;
+export default Paint;
