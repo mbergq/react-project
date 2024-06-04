@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SomeContext from "./SomeContext";
 import styled from "styled-components";
 import Home from "./Home";
 import Colors from "./Paint";
@@ -22,6 +23,7 @@ const Main = styled.main`
 `;
 
 function App() {
+  const [header, setHeader] = useState("Jump to a page");
   const [page, setPage] = useState(1);
   const router = createHashRouter([
     {
@@ -53,6 +55,10 @@ function App() {
       ),
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <SomeContext.Provider value={header}>
+      <RouterProvider router={router} />
+    </SomeContext.Provider>
+  );
 }
 export default App;

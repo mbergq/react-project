@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import axios from "axios";
+import SomeContext from "./SomeContext";
 const url = "https://api.harvardartmuseums.org/image?";
 
 const Image = styled.img`
@@ -36,6 +37,9 @@ const rotate360 = keyframes`
     transform: rotate(360deg);
   }
 `;
+const ErrorMsg = styled.p`
+  color: red;
+`;
 
 const Spinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
@@ -52,10 +56,11 @@ const Spinner = styled.div`
 `;
 
 function Gallery() {
+  const header = useContext(SomeContext);
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
   const [inputValue, setInputValue] = useState("");
-  const [pageNumber, setPageNumber] = useOutletContext();
+  const [pageNumber, setPageNumber] = useOutletContext(); //useContext
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +86,7 @@ function Gallery() {
 
   return (
     <>
-      <h3>Jump to a page</h3>
+      <h3>{header}</h3>
       <FormWrapper>
         <Formik
           initialValues={{ name: "" }}
@@ -114,7 +119,7 @@ function Gallery() {
               >
                 Go
               </button>
-              <ErrorMessage name="name" component="p" />
+              <ErrorMessage name="name" component={ErrorMsg} />
             </Form>
           )}
         </Formik>
