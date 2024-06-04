@@ -14,10 +14,14 @@ const ColorBoxWrapper = styled.div`
   margin-bottom: 18px;
   /* gap: 2px; */
 `;
-
 const ColorBox = styled.button`
   width: 42px;
   height: 42px;
+`;
+const ColorDisplay = styled.div`
+  width: 44px;
+  height: 44px;
+  background-color: ${(props) => props.$bgColor || "#ecebeb"};
 `;
 
 function Paint() {
@@ -30,7 +34,7 @@ function Paint() {
       const response = await fetch("../apikey.json");
       const json = await response.json();
       return axios
-        .get(`${url}apikey=${json.apikey}&page=10`)
+        .get(`${url}apikey=${json.apikey}&page=9`)
         .then((response) => {
           setColors(response.data.records);
           console.log("Fetch is done..");
@@ -58,6 +62,7 @@ function Paint() {
             ></ColorBox>
           ))}
       </ColorBoxWrapper>
+      <ColorDisplay $bgColor={activeColor} />
       <Canvas props={{ activeColor: activeColor }} />
     </>
   );

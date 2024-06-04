@@ -28,6 +28,9 @@ const FormWrapper = styled.div`
 const InfoWrapper = styled.div`
   max-width: 14%;
 `;
+const ErrorMsg = styled.p`
+  color: red;
+`;
 
 const rotate360 = keyframes`
   from {
@@ -36,9 +39,6 @@ const rotate360 = keyframes`
   to {
     transform: rotate(360deg);
   }
-`;
-const ErrorMsg = styled.p`
-  color: red;
 `;
 
 const Spinner = styled.div`

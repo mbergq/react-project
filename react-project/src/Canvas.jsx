@@ -3,8 +3,8 @@ import styled from "styled-components";
 import proptypes from "prop-types";
 
 const PaintArea = styled.canvas`
-  height: 520px;
-  width: 960px;
+  height: 360px;
+  width: 720px;
   border: 1px solid #000000;
 `;
 
@@ -49,8 +49,8 @@ function Canvas({ props }) {
   return (
     <>
       <PaintArea
-        height="520"
-        width="960"
+        height="360"
+        width="720"
         onMouseDown={startDrawing}
         onMouseUp={endDrawing}
         onMouseMove={draw}
