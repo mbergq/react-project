@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
 import proptypes from "prop-types";
-
-const PaintArea = styled.canvas`
-  height: 360px;
-  width: 720px;
-  border: 1px solid #000000;
-`;
+import { StyledCanvas } from "../styled-components/Canvas.styled";
 
 function Canvas({ props }) {
   const canvasRef = useRef(null);
@@ -48,7 +42,7 @@ function Canvas({ props }) {
   };
   return (
     <>
-      <PaintArea
+      <StyledCanvas
         height="360"
         width="720"
         onMouseDown={startDrawing}

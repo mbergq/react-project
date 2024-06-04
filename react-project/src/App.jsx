@@ -1,26 +1,16 @@
 import { useState } from "react";
 import SomeContext from "./SomeContext";
-import styled from "styled-components";
-import Home from "./Home";
-import Colors from "./Paint";
-import Gallery from "./Gallery";
-import GalleryObject from "./GalleryObject";
+import Home from "./components/Home";
+import Colors from "./components/Paint";
+import Gallery from "./components/Gallery";
+import GalleryObject from "./components/GalleryObject";
+import { StyledMain } from "./styled-components/Main.styled";
 import {
   createHashRouter,
   Link,
   Outlet,
   RouterProvider,
 } from "react-router-dom";
-
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 42px;
-  align-items: flex-start;
-  background-color: #dbc3e5;
-  height: 100vh;
-`;
 
 function App() {
   const [header, setHeader] = useState("Jump to a page");
@@ -29,20 +19,20 @@ function App() {
     {
       children: [
         { element: <Home />, path: "/" },
-        { element: <Colors />, path: "/colors" },
+        { element: <Colors />, path: "/paint" },
         { element: <Gallery />, path: "/gallery" },
         { element: <GalleryObject />, path: "/gallery/:id" },
       ],
       element: (
         <>
-          <Main>
+          <StyledMain>
             <nav>
               <ul>
                 <li>
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/colors">Colors</Link>
+                  <Link to="/paint">Paint</Link>
                 </li>
                 <li>
                   <Link to="/gallery">Gallery</Link>
@@ -50,7 +40,7 @@ function App() {
               </ul>
             </nav>
             <Outlet context={[page, setPage]} />
-          </Main>
+          </StyledMain>
         </>
       ),
     },

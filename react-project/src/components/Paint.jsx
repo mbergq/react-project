@@ -1,28 +1,9 @@
 import { useState, useEffect } from "react";
 import Canvas from "./Canvas";
-import styled from "styled-components";
 import axios from "axios";
+import { ColorButton } from "../styled-components/ColorButton.styled";
+import { ColorDisplay } from "../styled-components/ColorDisplay.styled";
 const url = "https://api.harvardartmuseums.org/color?";
-
-//Might change this 'div' name to toolboxwrapper when we add more "tools"
-const ColorBoxWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  max-width: 224px;
-  /* padding: 32px; */
-  margin-bottom: 18px;
-  /* gap: 2px; */
-`;
-const ColorBox = styled.button`
-  width: 42px;
-  height: 42px;
-`;
-const ColorDisplay = styled.div`
-  width: 44px;
-  height: 44px;
-  background-color: ${(props) => props.$bgColor || "#ecebeb"};
-`;
 
 function Paint() {
   const [colors, setColors] = useState(null);
@@ -51,17 +32,15 @@ function Paint() {
   return (
     <>
       <h2>Paint</h2>
-      <ColorBoxWrapper>
-        {colors !== null &&
-          colors.map((color) => (
-            <ColorBox
-              key={color.id}
-              style={{ backgroundColor: color.hex }}
-              value={color.hex}
-              onClick={(event) => setActiveColor(event.target.value)}
-            ></ColorBox>
-          ))}
-      </ColorBoxWrapper>
+      {colors !== null &&
+        colors.map((color) => (
+          <ColorButton
+            key={color.id}
+            style={{ backgroundColor: color.hex }}
+            value={color.hex}
+            onClick={(event) => setActiveColor(event.target.value)}
+          ></ColorButton>
+        ))}
       <ColorDisplay $bgColor={activeColor} />
       <Canvas props={{ activeColor: activeColor }} />
     </>

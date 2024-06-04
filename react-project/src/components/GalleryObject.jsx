@@ -28,8 +28,8 @@ function GalleryObject() {
         return axios
           .get(`${url}apikey=${json.apikey}&id=${id}`)
           .then((response) => {
-            console.log(response.data.records[0].colors);
-            console.log(response.data.records[0]);
+            // console.log(response.data.records[0].colors);
+            // console.log(response.data.records[0]);
             setImage(response.data.records[0].baseimageurl);
             setColor(response.data.records[0].colors);
             console.log("Fetch is done..");
