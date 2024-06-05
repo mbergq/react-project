@@ -5,6 +5,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { StyledGrid } from "../styled-components/Grid.styled";
 import { StyledImage } from "../styled-components/Image.styled";
+import { StyledWrapperLeft } from "../styled-components/LeftColWrap.styled";
+import {
+  StyledText,
+  StyledHeader,
+} from "../styled-components/TextColor.styled";
+import { StyledButton } from "../styled-components/Button.styled";
 import { Spinner } from "../styled-components/Spinner.styled";
 import { ErrorMsg } from "../styled-components/ErrorMsg.styled";
 import SomeContext from "../SomeContext";
@@ -41,62 +47,69 @@ function Gallery() {
 
   return (
     <>
-      <h3>{header}</h3>
-      <Formik
-        initialValues={{ name: "" }}
-        validate={(values) => {
-          setInputValue(values.name);
-          const errors = {};
-          let numbers = /^[0-9]+$/;
-          if (!values.name.match(numbers) && values.name !== "") {
-            errors.name = "Invalid entry, must be only numbers";
-          } else if (values.name * 1 > 3878) {
-            errors.name = "There are 3878 pages, please enter a lower number";
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          //multiply string with 1 to turn it into number data-type
-          setPageNumber(values.name * 1);
-          values.name = "";
-          setSubmitting(false);
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <Field type="name" name="name" />
-            <button
-              type="submit"
-              disabled={isSubmitting || inputValue > 3878 || inputValue === ""}
-            >
-              Go
-            </button>
-            <ErrorMessage name="name" component={ErrorMsg} />
-          </Form>
+      <StyledWrapperLeft>
+        <StyledHeader>{header}</StyledHeader>
+        <Formik
+          initialValues={{ name: "" }}
+          validate={(values) => {
+            setInputValue(values.name);
+            const errors = {};
+            let numbers = /^[0-9]+$/;
+            if (!values.name.match(numbers) && values.name !== "") {
+              errors.name = "Invalid entry, must be only numbers";
+            } else if (values.name * 1 > 3878) {
+              errors.name = "There are 3878 pages, please enter a lower number";
+            }
+            return errors;
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            //multiply string with 1 to turn it into number data-type
+            setPageNumber(values.name * 1);
+            values.name = "";
+            setSubmitting(false);
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <Field type="name" name="name" />
+              <ErrorMessage name="name" component={ErrorMsg} />
+              <StyledButton
+                type="submit"
+                disabled={
+                  isSubmitting || inputValue > 3878 || inputValue === ""
+                }
+              >
+                Go
+              </StyledButton>
+            </Form>
+          )}
+        </Formik>
+        <StyledButton
+          disabled={pageNumber === 1}
+          onClick={() => setPageNumber(pageNumber - 1)}
+        >
+          Previous
+        </StyledButton>
+        <StyledButton
+          disabled={pageNumber === 3878}
+          onClick={() => setPageNumber(pageNumber + 1)}
+        >
+          Next
+        </StyledButton>
+
+        {info ? (
+          <StyledText>
+            Page: {info.page} / {info.pages}
+          </StyledText>
+        ) : (
+          <Spinner />
         )}
-      </Formik>
-      <button
-        disabled={pageNumber === 1}
-        onClick={() => setPageNumber(pageNumber - 1)}
-      >
-        Previous
-      </button>
-      <button
-        disabled={pageNumber === 3878}
-        onClick={() => setPageNumber(pageNumber + 1)}
-      >
-        Next
-      </button>
-
-      {info ? (
-        <p>
-          Page {info.page} / {info.pages}
-        </p>
-      ) : (
-        <Spinner />
-      )}
-      {info ? <p>Response time: {info.responsetime}</p> : <Spinner />}
-
+        {info ? (
+          <StyledText>Response time: {info.responsetime}</StyledText>
+        ) : (
+          <Spinner />
+        )}
+      </StyledWrapperLeft>
       <StyledGrid>
         {data !== null &&
           data.map((object) => (

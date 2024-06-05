@@ -2,10 +2,8 @@ import styled from "styled-components";
 
 export const StyledMain = styled.main`
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   flex-wrap: wrap;
-  padding: 42px;
-  align-items: flex-start;
-  background-color: #dbc3e5;
+  max-width: 100%;
   height: 100vh;
 `;

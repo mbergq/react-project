@@ -25,20 +25,20 @@ function App() {
       ],
       element: (
         <>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/paint">Paint</Link>
+              </li>
+              <li>
+                <Link to="/gallery">Gallery</Link>
+              </li>
+            </ul>
+          </nav>
           <StyledMain>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/paint">Paint</Link>
-                </li>
-                <li>
-                  <Link to="/gallery">Gallery</Link>
-                </li>
-              </ul>
-            </nav>
             <Outlet context={[page, setPage]} />
           </StyledMain>
         </>
