@@ -3,16 +3,18 @@ import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
-import { StyledGrid } from "../styled-components/Grid.styled";
-import { StyledImage } from "../styled-components/Image.styled";
-import { StyledWrapperLeft } from "../styled-components/LeftColWrap.styled";
+import {
+  StyledGrid,
+  StyledWrapperLeft,
+  StyledImage,
+  ErrorMsg,
+} from "../styled-components/Gallery.styled";
 import {
   StyledText,
   StyledHeader,
 } from "../styled-components/TextColor.styled";
 import { StyledButton } from "../styled-components/Button.styled";
 import { Spinner } from "../styled-components/Spinner.styled";
-import { ErrorMsg } from "../styled-components/ErrorMsg.styled";
 import SomeContext from "../SomeContext";
 
 const url = "https://api.harvardartmuseums.org/image?";
