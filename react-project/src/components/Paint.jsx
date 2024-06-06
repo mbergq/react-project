@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import Canvas from "./Canvas";
 import axios from "axios";
-import { ColorButton } from "../styled-components/ColorButton.styled";
-import { ColorDisplay } from "../styled-components/ColorDisplay.styled";
+import {
+  ColorBtnWrapper,
+  ColorButton,
+  ColorDisplay,
+} from "../styled-components/Paint.styled";
+import {
+  StyledText,
+  StyledHeader,
+} from "../styled-components/TextColor.styled";
 const url = "https://api.harvardartmuseums.org/color?";
 
 function Paint() {
@@ -31,17 +38,19 @@ function Paint() {
 
   return (
     <>
-      <h2>Paint</h2>
-      {colors !== null &&
-        colors.map((color) => (
-          <ColorButton
-            key={color.id}
-            style={{ backgroundColor: color.hex }}
-            value={color.hex}
-            onClick={(event) => setActiveColor(event.target.value)}
-          ></ColorButton>
-        ))}
-      <ColorDisplay $bgColor={activeColor} />
+      <StyledHeader $mt="0px">Paint</StyledHeader>
+      <ColorBtnWrapper>
+        <ColorDisplay $bgColor={activeColor} />
+        {colors !== null &&
+          colors.map((color) => (
+            <ColorButton
+              key={color.id}
+              style={{ backgroundColor: color.hex }}
+              value={color.hex}
+              onClick={(event) => setActiveColor(event.target.value)}
+            ></ColorButton>
+          ))}
+      </ColorBtnWrapper>
       <Canvas props={{ activeColor: activeColor }} />
     </>
   );

@@ -7,4 +7,5 @@ export const StyledText = styled.p`
 
 export const StyledHeader = styled(StyledText)`
   font-size: x-large;
+  margin-top: ${(props) => props.$mt || ""};
 `;
