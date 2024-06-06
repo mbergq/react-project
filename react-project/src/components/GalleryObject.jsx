@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {
   ColorBtnWrapper,
   ColorButton,
+  ColorDisplay,
 } from "../styled-components/Paint.styled";
 import { StyledText } from "../styled-components/TextColor.styled";
 import axios from "axios";
@@ -21,6 +22,7 @@ function GalleryObject() {
   const [image, setImage] = useState(null);
   const [color, setColor] = useState(null);
   const [hexValue, setHexValue] = useState(null);
+  const [activeColor, setActiveColor] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -47,13 +49,21 @@ function GalleryObject() {
   return (
     <>
       <ColorBtnWrapper>
-        <StyledText>Value: {hexValue}</StyledText>
+        <StyledText>
+          {hexValue
+            ? "Value: " + hexValue
+            : "Click on a color to get its value.."}
+        </StyledText>
+        <ColorDisplay $bgColor={activeColor}></ColorDisplay>
         {color !== null &&
           color.map((col, index) => (
             <ColorButton
               key={index}
               style={{ backgroundColor: col.color }}
-              onClick={() => setHexValue(col.color)}
+              onClick={() => {
+                setHexValue(col.color);
+                setActiveColor(col.color);
+              }}
             ></ColorButton>
           ))}
       </ColorBtnWrapper>
