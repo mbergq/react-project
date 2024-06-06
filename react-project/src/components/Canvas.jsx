@@ -6,8 +6,8 @@ function Canvas({ props }) {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [lineWidth, setLineWidth] = useState(2.8);
-  const [lineOpacity, setLineOpacity] = useState(0.1);
+  // const [lineWidth, setLineWidth] = useState(2.8);
+  // const [lineOpacity, setLineOpacity] = useState(0.1);
 
   let selectedColor = props.activeColor;
   useEffect(() => {
@@ -15,11 +15,11 @@ function Canvas({ props }) {
     const ctx = canvas.getContext("2d");
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.globalAlpha = lineOpacity;
+    // ctx.globalAlpha = lineOpacity;
     ctx.strokeStyle = selectedColor;
-    ctx.lineWidth = lineWidth;
+    // ctx.lineWidth = lineWidth;
     ctxRef.current = ctx;
-  }, [lineOpacity, lineWidth, selectedColor]);
+  }, [selectedColor]);
 
   const startDrawing = (event) => {
     ctxRef.current.beginPath();

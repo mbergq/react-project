@@ -8,12 +8,12 @@ import {
   StyledWrapperLeft,
   StyledImage,
   ErrorMsg,
+  StyledButton,
 } from "../styled-components/Gallery.styled";
 import {
   StyledText,
   StyledHeader,
 } from "../styled-components/TextColor.styled";
-import { StyledButton } from "../styled-components/Button.styled";
 import { Spinner } from "../styled-components/Spinner.styled";
 import SomeContext from "../SomeContext";
 

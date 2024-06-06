@@ -5,12 +5,8 @@ import Colors from "./components/Paint";
 import Gallery from "./components/Gallery";
 import GalleryObject from "./components/GalleryObject";
 import { StyledMain } from "./styled-components/Main.styled";
-import {
-  createHashRouter,
-  Link,
-  Outlet,
-  RouterProvider,
-} from "react-router-dom";
+import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
+import { StyledNav, StyledLink } from "./styled-components/Nav.styled";
 
 function App() {
   const [header, setHeader] = useState("Jump to a page");
@@ -25,19 +21,13 @@ function App() {
       ],
       element: (
         <>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/paint">Paint</Link>
-              </li>
-              <li>
-                <Link to="/gallery">Gallery</Link>
-              </li>
-            </ul>
-          </nav>
+          <StyledNav>
+            <StyledLink to="/">Home</StyledLink>
+
+            <StyledLink to="/gallery">Gallery</StyledLink>
+
+            <StyledLink to="/paint">Paint</StyledLink>
+          </StyledNav>
           <StyledMain>
             <Outlet context={[page, setPage]} />
           </StyledMain>

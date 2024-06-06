@@ -6,10 +6,7 @@ import {
   ColorButton,
   ColorDisplay,
 } from "../styled-components/Paint.styled";
-import {
-  StyledText,
-  StyledHeader,
-} from "../styled-components/TextColor.styled";
+import { StyledHeader } from "../styled-components/TextColor.styled";
 const url = "https://api.harvardartmuseums.org/color?";
 
 function Paint() {

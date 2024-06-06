@@ -1,16 +1,12 @@
-import styled from "styled-components";
-
-const Header = styled.h3`
-  align-self: flex-start;
-`;
+import { StyledHeader } from "../styled-components/TextColor.styled";
 
 function Home() {
   return (
     <>
-      <Header>
+      <StyledHeader>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
         laborum?
-      </Header>
+      </StyledHeader>
     </>
   );
 }

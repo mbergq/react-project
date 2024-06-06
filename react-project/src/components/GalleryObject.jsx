@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import {
+  ColorBtnWrapper,
+  ColorButton,
+} from "../styled-components/Paint.styled";
+import { StyledText } from "../styled-components/TextColor.styled";
 import axios from "axios";
 
 const url = "https://api.harvardartmuseums.org/image?";
 
 const Image = styled.img`
-  max-width: 68%;
+  max-width: 70%;
+  object-fit: cover;
   height: auto;
-`;
-
-const ColorBox = styled.button`
-  width: 42px;
-  height: 42px;
+  margin-left: auto;
 `;
 
 function GalleryObject() {
   const [image, setImage] = useState(null);
   const [color, setColor] = useState(null);
+  const [hexValue, setHexValue] = useState(null);
   const { id } = useParams();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,13 +46,18 @@ function GalleryObject() {
   }, [id]);
   return (
     <>
-      {color !== null &&
-        color.map((col, index) => (
-          <ColorBox
-            key={index}
-            style={{ backgroundColor: col.color }}
-          ></ColorBox>
-        ))}
+      <ColorBtnWrapper>
+        <StyledText>Value: {hexValue}</StyledText>
+        {color !== null &&
+          color.map((col, index) => (
+            <ColorButton
+              key={index}
+              style={{ backgroundColor: col.color }}
+              onClick={() => setHexValue(col.color)}
+            ></ColorButton>
+          ))}
+      </ColorBtnWrapper>
+
       <Image src={image}></Image>
     </>
   );
