@@ -4,8 +4,7 @@ function Home() {
   return (
     <>
       <StyledHeader>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-        laborum?
+        Welcome! Use the links to escape this boring page
       </StyledHeader>
     </>
   );
