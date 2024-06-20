@@ -51,6 +51,7 @@ function Gallery() {
     <>
       <StyledWrapperLeft>
         <StyledHeader>{header}</StyledHeader>
+
         <Formik
           initialValues={{ name: "" }}
           validate={(values) => {
@@ -58,9 +59,7 @@ function Gallery() {
             const errors = {};
             let numbers = /^[0-9]+$/;
             if (!values.name.match(numbers) && values.name !== "") {
-              errors.name = "Invalid entry, must be only numbers";
-            } else if (values.name * 1 > 3878) {
-              errors.name = "There are 3878 pages, please enter a lower number";
+              errors.name = "Invalid entry, can only contain numbers";
             }
             return errors;
           }}
@@ -75,36 +74,39 @@ function Gallery() {
             <Form>
               <Field type="name" name="name" />
               <ErrorMessage name="name" component={ErrorMsg} />
-              <StyledButton
-                type="submit"
-                disabled={
-                  isSubmitting || inputValue > 3878 || inputValue === ""
-                }
-              >
-                Go
-              </StyledButton>
+              {info && (
+                <StyledButton
+                  type="submit"
+                  disabled={
+                    isSubmitting || inputValue > info.pages || inputValue === ""
+                  }
+                >
+                  Go
+                </StyledButton>
+              )}
             </Form>
           )}
         </Formik>
-        <StyledButton
-          disabled={pageNumber === 1}
-          onClick={() => setPageNumber(pageNumber - 1)}
-        >
-          Previous
-        </StyledButton>
-        <StyledButton
-          disabled={pageNumber === 3878}
-          onClick={() => setPageNumber(pageNumber + 1)}
-        >
-          Next
-        </StyledButton>
-
-        {info ? (
+        {info && (
+          <StyledButton
+            disabled={pageNumber === 1}
+            onClick={() => setPageNumber(pageNumber - 1)}
+          >
+            Previous
+          </StyledButton>
+        )}
+        {info && (
+          <StyledButton
+            disabled={pageNumber === info.pages}
+            onClick={() => setPageNumber(pageNumber + 1)}
+          >
+            Next
+          </StyledButton>
+        )}
+        {info && (
           <StyledText>
             Page: {info.page} / {info.pages}
           </StyledText>
-        ) : (
-          <Spinner />
         )}
         {info ? (
           <StyledText>Response time: {info.responsetime}</StyledText>

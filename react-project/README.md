@@ -8,3 +8,6 @@ I've also made use of 'styled-components' and 'Formik' packages from npm.
 I might continue to develop the styling and responsiveness later as it is very
 basic and dry right now. There is also a lot of things i know i can add to the
 'Paint' page.
+
+I also know i can improve quite a bit on the formik-form, the name of the inputfield
+is bad and not logical at the moment
