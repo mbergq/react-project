@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledText = styled.p`
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
+  font-style: ${(props) => props.$fontStyle || "normal"};
+  color: ${(props) => props.$colorOpac || "#ffffff"};
 `;
 
 export const StyledHeader = styled(StyledText)`

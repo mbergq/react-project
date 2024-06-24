@@ -20,7 +20,7 @@ import SomeContext from "../SomeContext";
 const url = "https://api.harvardartmuseums.org/image?";
 
 function Gallery() {
-  const header = useContext(SomeContext);
+  const user = useContext(SomeContext);
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
   const [inputValue, setInputValue] = useState("");
@@ -50,7 +50,7 @@ function Gallery() {
   return (
     <>
       <StyledWrapperLeft>
-        <StyledHeader>{header}</StyledHeader>
+        <StyledHeader>Jump to a page</StyledHeader>
 
         <Formik
           initialValues={{ name: "" }}
@@ -113,6 +113,9 @@ function Gallery() {
         ) : (
           <Spinner />
         )}
+        <StyledText $fontStyle="italic" $colorOpac="#ffffff80">
+          User: {user}
+        </StyledText>
       </StyledWrapperLeft>
       <StyledGrid>
         {data !== null &&

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SomeContext from "./SomeContext";
 import Home from "./components/Home";
 import Colors from "./components/Paint";
@@ -9,8 +9,11 @@ import { createHashRouter, Outlet, RouterProvider } from "react-router-dom";
 import { StyledNav, StyledLink } from "./styled-components/Nav.styled";
 
 function App() {
-  const [header, setHeader] = useState("Jump to a page");
+  const [user, setUser] = useState(null);
   const [page, setPage] = useState(1);
+  useEffect(() => {
+    setUser("Martin");
+  }, []);
   const router = createHashRouter([
     {
       children: [
@@ -36,7 +39,7 @@ function App() {
     },
   ]);
   return (
-    <SomeContext.Provider value={header}>
+    <SomeContext.Provider value={user}>
       <RouterProvider router={router} />
     </SomeContext.Provider>
   );
